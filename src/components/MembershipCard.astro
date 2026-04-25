@@ -1,0 +1,157 @@
+---
+interface Props {
+  name: string;
+  price: number;
+  period: string;
+  tagline: string;
+  features: string[];
+  cta: string;
+  featured?: boolean;
+}
+
+const { name, price, period, tagline, features, cta, featured = false } = Astro.props;
+---
+
+<div class={`membership-card ${featured ? 'featured' : ''}`}>
+  {featured && (
+    <div class="featured-badge">Most Popular</div>
+  )}
+
+  <div class="card-header">
+    <p class="tier-name">{name}</p>
+    <div class="price-row">
+      <span class="price-dollar">$</span>
+      <span class="price-amount">{price}</span>
+      <span class="price-period">/{period}</span>
+    </div>
+    <p class="tagline">{tagline}</p>
+  </div>
+
+  <ul class="features-list">
+    {features.map((f) => (
+      <li>{f}</li>
+    ))}
+  </ul>
+
+  <a href="/contact" class={featured ? 'btn-primary w-full text-center' : 'btn-outline w-full text-center'}>
+    {cta}
+  </a>
+</div>
+
+<style>
+  .membership-card {
+    background-color: var(--color-gray-50);
+    border: 2px solid var(--color-gray-200);
+    border-radius: 6px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  .membership-card.featured {
+    border-color: var(--color-accent);
+    background-color: #fff;
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -1px;
+    right: 1.5rem;
+    background-color: var(--color-accent);
+    color: var(--color-paper);
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.625rem;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .tier-name {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0;
+    line-height: 1;
+  }
+
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.1em;
+    margin-top: 0.5rem;
+    line-height: 1;
+  }
+
+  .price-dollar {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    align-self: flex-start;
+    margin-top: 0.35em;
+  }
+
+  .price-amount {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--color-ink);
+    letter-spacing: -0.03em;
+  }
+
+  .price-period {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-gray-600);
+    margin-left: 0.1em;
+  }
+
+  .tagline {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    border-top: 1px solid var(--color-gray-200);
+    padding-top: 1.25rem;
+  }
+
+  .features-list li {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-gray-800);
+    line-height: 1.4;
+    padding-left: 0.75rem;
+    position: relative;
+  }
+
+  .features-list li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .w-full {
+    width: 100%;
+    justify-content: center;
+  }
+</style>

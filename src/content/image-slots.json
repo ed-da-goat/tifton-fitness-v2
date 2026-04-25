@@ -1,0 +1,141 @@
+{
+  "slots": [
+    {
+      "id": "hero-main",
+      "page": "index",
+      "section": "Hero",
+      "description": "Wide interior shot showing the free weight floor and equipment, members visible in background, natural light. Horizontal, 16:9, minimum 2400px wide.",
+      "aspectRatio": "21/9",
+      "currentSrc": "src/assets/images/hero/tifton-001.jpg",
+      "status": "placeholder_filled",
+      "notes": "tifton-001.jpg is 2048×1511 — low-res for full-bleed hero. Request original from owner."
+    },
+    {
+      "id": "gym-free-weights",
+      "page": "index",
+      "section": "What's Inside",
+      "description": "Free weight area: dumbbell rack 5–100 lbs, Olympic barbells, flat/incline/decline benches. Eye-level shot, square-ish crop.",
+      "aspectRatio": "4/3",
+      "currentSrc": null,
+      "status": "placeholder"
+    },
+    {
+      "id": "gym-cardio",
+      "page": "index",
+      "section": "What's Inside",
+      "description": "Cardio section: row of treadmills, ellipticals, and bikes. Wide shot, square-ish crop.",
+      "aspectRatio": "4/3",
+      "currentSrc": null,
+      "status": "placeholder"
+    },
+    {
+      "id": "gym-machines",
+      "page": "index",
+      "section": "What's Inside",
+      "description": "Machine section: cable crossover, Smith machine, leg press. Square-ish crop.",
+      "aspectRatio": "4/3",
+      "currentSrc": null,
+      "status": "placeholder"
+    },
+    {
+      "id": "gym-functional",
+      "page": "index",
+      "section": "What's Inside",
+      "description": "Functional training area: pull-up station, kettlebells, mats. Square-ish crop.",
+      "aspectRatio": "4/3",
+      "currentSrc": null,
+      "status": "placeholder"
+    },
+    {
+      "id": "staff-jordan-portrait",
+      "page": "index, about",
+      "section": "Coach Preview / About",
+      "description": "Portrait of Jordan Roman, Head Coach. Professional, approachable. Square crop, natural or studio light.",
+      "aspectRatio": "1/1",
+      "currentSrc": null,
+      "status": "placeholder",
+      "notes": "tifton-014.jpg may be Jordan — verify and get permission before using on web."
+    },
+    {
+      "id": "gallery-main",
+      "page": "gym",
+      "section": "Gallery",
+      "description": "Wide interior shot of the gym floor showing free weights, machines, and cardio equipment together. Landscape, 16:9, minimum 2400px.",
+      "aspectRatio": "16/9",
+      "currentSrc": null,
+      "status": "placeholder"
+    },
+    {
+      "id": "gallery-weights",
+      "page": "gym",
+      "section": "Gallery",
+      "description": "Close-up of dumbbell rack, 5–100 lbs, well-organized. Square or 4:3 crop.",
+      "aspectRatio": "4/3",
+      "currentSrc": null,
+      "status": "placeholder"
+    },
+    {
+      "id": "gallery-cardio",
+      "page": "gym",
+      "section": "Gallery",
+      "description": "Row of treadmills and ellipticals. Square or 4:3 crop.",
+      "aspectRatio": "4/3",
+      "currentSrc": null,
+      "status": "placeholder"
+    },
+    {
+      "id": "gallery-cables",
+      "page": "gym",
+      "section": "Gallery",
+      "description": "Cable crossover system and machine area. Square or 4:3 crop.",
+      "aspectRatio": "4/3",
+      "currentSrc": null,
+      "status": "placeholder"
+    },
+    {
+      "id": "gallery-functional",
+      "page": "gym",
+      "section": "Gallery",
+      "description": "Functional training area with pull-up station and open floor space. Square or 4:3 crop.",
+      "aspectRatio": "4/3",
+      "currentSrc": null,
+      "status": "placeholder"
+    },
+    {
+      "id": "gallery-exterior",
+      "page": "gym",
+      "section": "Gallery",
+      "description": "Exterior of Tifton Fitness at 130 Hunt Rd B7. Daytime. Shows signage and entrance.",
+      "aspectRatio": "4/3",
+      "currentSrc": "src/assets/images/gym/exterior-signage.jpg",
+      "status": "filled"
+    },
+    {
+      "id": "about-gym-interior",
+      "page": "about",
+      "section": "Origin Story",
+      "description": "Interior of Tifton Fitness — wide shot showing the gym in operation. Warm, welcoming atmosphere. Horizontal.",
+      "aspectRatio": "4/3",
+      "currentSrc": null,
+      "status": "placeholder"
+    },
+    {
+      "id": "award-best-gym",
+      "page": "about",
+      "section": "Awards",
+      "description": "Tifton Gazette Best Fitness Center 2026 award graphic or plaque photo.",
+      "aspectRatio": "1/1",
+      "currentSrc": "src/assets/images/tifton-016.jpg",
+      "status": "placeholder_filled"
+    },
+    {
+      "id": "award-best-trainer",
+      "page": "about",
+      "section": "Awards",
+      "description": "Tifton Gazette Best Personal Trainer 2026 award graphic featuring Jordan Roman.",
+      "aspectRatio": "1/1",
+      "currentSrc": "src/assets/images/tifton-015.jpg",
+      "status": "placeholder_filled"
+    }
+  ]
+}

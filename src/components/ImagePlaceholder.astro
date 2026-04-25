@@ -1,0 +1,96 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  slot?: string;
+  description: string;
+  aspectRatio?: string;
+  src?: ImageMetadata;
+  alt?: string;
+  class?: string;
+  priority?: boolean;
+  objectPosition?: string;
+  objectFit?: string;
+  width?: string;
+}
+
+const {
+  slot: slotName,
+  description,
+  aspectRatio = '16/9',
+  src,
+  alt,
+  class: className = '',
+  priority = false,
+  objectPosition = 'center',
+  objectFit = 'cover',
+  width = '100%',
+} = Astro.props;
+
+const isDev = import.meta.env.DEV;
+---
+
+{src ? (
+  <Image
+    src={src}
+    alt={alt ?? description}
+    class={className}
+    loading={priority ? 'eager' : 'lazy'}
+    style={`aspect-ratio: ${aspectRatio}; object-fit: ${objectFit}; object-position: ${objectPosition}; width: ${width};`}
+  />
+) : (
+  <div
+    class={`image-placeholder ${className}`}
+    data-slot={slotName}
+    style={`aspect-ratio: ${aspectRatio};`}
+    role="img"
+    aria-label={`Image placeholder: ${description}`}
+  >
+    {isDev && (
+      <div class="placeholder-label">
+        <span class="placeholder-tag">{slotName ?? 'IMG'}</span>
+        <p>{description}</p>
+      </div>
+    )}
+  </div>
+)}
+
+<style>
+  .image-placeholder {
+    background-color: #D8D8D0;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .placeholder-label {
+    padding: 1.25rem;
+    text-align: center;
+    max-width: 400px;
+  }
+
+  .placeholder-tag {
+    display: inline-block;
+    background-color: #1F5F3F;
+    color: #FAFAF7;
+    font-family: "Inter Tight Variable", system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.625rem;
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+  }
+
+  .placeholder-label p {
+    font-family: "Inter Tight Variable", system-ui, sans-serif;
+    font-size: 0.8125rem;
+    color: #606058;
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

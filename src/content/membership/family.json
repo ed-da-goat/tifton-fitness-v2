@@ -1,0 +1,17 @@
+{
+  "order": 3,
+  "name": "Family",
+  "price": 55,
+  "period": "month",
+  "tagline": "Up to four people. As low as $13.75 each.",
+  "features": [
+    "Up to 4 members on one plan",
+    "Four key cards included",
+    "Add extra members for $10/ea",
+    "As low as $13.75 per person",
+    "No contract — month-to-month",
+    "No sign-up fee"
+  ],
+  "cta": "Start Your Membership",
+  "featured": false
+}

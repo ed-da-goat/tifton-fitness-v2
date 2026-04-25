@@ -1,0 +1,271 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MembershipCard from '../components/MembershipCard.astro';
+import { getCollection } from 'astro:content';
+
+const memberships = (await getCollection('membership')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const faqs = (await getCollection('faq'))
+  .filter((f) => f.data.category === 'Membership & Billing')
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout
+  title="Memberships — Tifton Fitness"
+  description="Month-to-month gym memberships in Tifton, GA. Individual $25/mo, Couple $40/mo, Family $55/mo. No contracts, no hidden fees, cancel anytime."
+>
+
+  <!-- ─── PAGE HEADER ───────────────────────────────────── -->
+  <section class="page-header">
+    <div class="container">
+      <p class="page-eyebrow">Pricing</p>
+      <h1 class="page-title">
+        Straightforward gym membership.<br />
+        Month to month.
+      </h1>
+      <p class="page-sub">
+        We earn your membership every month. Stay because you want to,
+        not because you're locked in. No initiation fees, no annual charges,
+        no cancellation penalties.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── TIERS ─────────────────────────────────────────── -->
+  <section class="section-pad bg-paper">
+    <div class="container">
+      <div class="membership-grid">
+        {memberships.map((m) => (
+          <MembershipCard
+            name={m.data.name}
+            price={m.data.price}
+            period={m.data.period}
+            tagline={m.data.tagline}
+            features={m.data.features}
+            cta={m.data.cta}
+            featured={m.data.featured}
+          />
+        ))}
+      </div>
+
+      <p class="payment-note">
+        We accept cash, checks, and all major credit and debit cards.
+        Billing is monthly on the date you signed up.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── INCLUDED WITH EVERY PLAN ─────────────────────── -->
+  <section class="section-pad bg-gray-50">
+    <div class="container">
+      <h2 class="section-title">Included with every plan</h2>
+
+      <div class="perks-grid">
+
+        <div class="perk">
+          <h3 class="perk-name">24/7 Key Card Access</h3>
+          <p class="perk-desc">Your personal key card works every hour of every day. No staffed-hours restrictions.</p>
+        </div>
+
+        <div class="perk">
+          <h3 class="perk-name">Full Equipment Access</h3>
+          <p class="perk-desc">Cardio machines, free weights, cable systems, and functional training gear — all included.</p>
+        </div>
+
+        <div class="perk">
+          <h3 class="perk-name">Clean & Maintained Facility</h3>
+          <p class="perk-desc">We keep the gym spotless so you can focus on your workout, not the mess.</p>
+        </div>
+
+        <div class="perk">
+          <h3 class="perk-name">Security Cameras & Lighting</h3>
+          <p class="perk-desc">Monitored cameras and full lighting throughout — 24 hours a day.</p>
+        </div>
+
+        <div class="perk">
+          <h3 class="perk-name">Free Orientation</h3>
+          <p class="perk-desc">New to the gym? We'll walk you through every machine and answer your questions.</p>
+        </div>
+
+        <div class="perk">
+          <h3 class="perk-name">Month-to-Month Billing</h3>
+          <p class="perk-desc">No annual fees, no initiation costs, no cancellation penalties. Ever.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ───────────────────────────────────────────── -->
+  <section class="section-pad bg-paper">
+    <div class="container-prose">
+      <h2 class="section-title">Membership questions</h2>
+
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-question">{f.data.question}</summary>
+            <p class="faq-answer">{f.data.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <div class="faq-cta">
+        <p class="faq-cta-text">Still have a question?</p>
+        <a href="tel:+12293406228" class="btn-primary">Call (229) 340-6228</a>
+        <a href="/contact" class="btn-outline">Send a Message</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    padding-block: clamp(3rem, 7vw, 6rem);
+    background-color: var(--color-paper);
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .page-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 0.75rem;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--color-ink);
+    margin-bottom: 1.25rem;
+    max-width: 700px;
+  }
+
+  .page-sub {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: var(--color-gray-600);
+    line-height: 1.65;
+    max-width: 580px;
+    margin: 0;
+  }
+
+  .membership-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .membership-grid { grid-template-columns: 1fr; max-width: 420px; }
+  }
+
+  .payment-note {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-gray-600);
+    margin-top: 1.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    color: var(--color-ink);
+    margin-bottom: 2.5rem;
+  }
+
+  .perks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .perks-grid { grid-template-columns: 1fr; }
+  }
+
+  .perk-name {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    color: var(--color-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .perk-desc {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--color-gray-200);
+    margin-bottom: 3rem;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .faq-question {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    cursor: pointer;
+    list-style: none;
+    padding: 1.25rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .faq-question::-webkit-details-marker { display: none; }
+
+  .faq-question::after {
+    content: '+';
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--color-gray-400);
+    flex-shrink: 0;
+    transition: transform 200ms;
+  }
+
+  details[open] .faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    line-height: 1.7;
+    padding-bottom: 1.25rem;
+    margin: 0;
+  }
+
+  .faq-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .faq-cta-text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin: 0;
+  }
+</style>

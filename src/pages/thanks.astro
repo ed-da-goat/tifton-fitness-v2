@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Message Received — Tifton Fitness"
+  description="Thanks for reaching out to Tifton Fitness. We'll be in touch soon."
+>
+
+  <section class="thanks-section">
+    <div class="container-prose text-center">
+      <p class="thanks-eyebrow">Got it</p>
+      <h1 class="thanks-title">We'll be in touch.</h1>
+      <p class="thanks-sub">
+        Your message was sent. We typically respond within a few hours during business hours.
+        If you need to reach us sooner, give us a call.
+      </p>
+      <a href="tel:+12293406228" class="phone-link">(229) 340-6228</a>
+      <div class="thanks-actions">
+        <a href="/" class="btn-primary">Back to Home</a>
+        <a href="/membership" class="btn-outline">View Membership Plans</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .thanks-section {
+    padding-block: clamp(5rem, 12vw, 9rem);
+    background-color: var(--color-paper);
+  }
+
+  .thanks-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 1rem;
+  }
+
+  .thanks-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--color-ink);
+    margin-bottom: 1.25rem;
+  }
+
+  .thanks-sub {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: var(--color-gray-600);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .phone-link {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-decoration: none;
+    margin-bottom: 2.5rem;
+  }
+
+  .thanks-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+</style>

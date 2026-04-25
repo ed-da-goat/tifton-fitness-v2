@@ -1,0 +1,17 @@
+{
+  "order": 2,
+  "name": "Couple",
+  "price": 40,
+  "period": "month",
+  "tagline": "Two memberships. Less than two singles.",
+  "features": [
+    "Everything in Individual, times two",
+    "Two key cards included",
+    "Save $10/mo vs. two Individual plans",
+    "Shared account management",
+    "No contract — month-to-month",
+    "No sign-up fee"
+  ],
+  "cta": "Start Your Membership",
+  "featured": true
+}

@@ -1,0 +1,502 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import MapEmbed from '../components/MapEmbed.astro';
+import BusinessHours from '../components/BusinessHours.astro';
+import { getCollection } from 'astro:content';
+import galleryMainImg from '../assets/images/gym/machines-floor.jpg';
+import galleryWeightsImg from '../assets/images/gym/free-weights.jpg';
+import galleryCardioImg from '../assets/images/gym/cardio-row.jpg';
+import galleryCablesImg from '../assets/images/gym/tifton-017.jpg';
+import galleryFunctionalImg from '../assets/images/gym/functional-tf-method.jpg';
+import galleryExteriorImg from '../assets/images/gym/exterior-signage.jpg';
+
+const allFaqs = await getCollection('faq');
+const facilityFaqs = allFaqs
+  .filter((f) => f.data.category === 'Facility & Equipment')
+  .sort((a, b) => a.data.order - b.data.order);
+
+const equipmentZones = [
+  {
+    name: 'Free Weights',
+    items: [
+      'Dumbbells (5–100 lbs)',
+      'Olympic barbells & plates',
+      'EZ curl bars',
+      'Kettlebells',
+      'Flat, incline & decline benches',
+    ],
+  },
+  {
+    name: 'Cardio',
+    items: [
+      'Treadmills with incline',
+      'Elliptical trainers',
+      'Upright & recumbent bikes',
+      'Stair climber',
+      'Rowing machine',
+    ],
+  },
+  {
+    name: 'Machines',
+    items: [
+      'Smith machine',
+      'Lat pulldown / low row',
+      'Leg press & leg curl',
+      'Cable crossover system',
+      'Chest press & shoulder press',
+    ],
+  },
+  {
+    name: 'Functional & Flexibility',
+    items: [
+      'Pull-up & dip station',
+      'Resistance bands (various)',
+      'Medicine balls & slam balls',
+      'Ab rollers & mats',
+      'Dedicated stretching area',
+    ],
+  },
+];
+---
+
+<Layout
+  title="The Gym — Tifton Fitness"
+  description="See the equipment at Tifton Fitness: free weights to 100 lbs, cardio machines, cables, Smith machine, functional training. Open 24/7 in Tifton, GA."
+>
+
+  <!-- ─── PAGE HEADER ───────────────────────────────────── -->
+  <section class="page-header">
+    <div class="container">
+      <p class="page-eyebrow">The Gym</p>
+      <h1 class="page-title">Built for real workouts.</h1>
+      <p class="page-sub">
+        No gimmicks. Solid, well-maintained equipment — free weights, cables,
+        cardio, and functional training. Everything you need, 24 hours a day.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── GALLERY GRID ──────────────────────────────────── -->
+  <section class="section-pad bg-gray-50">
+    <div class="container">
+      <div class="gallery-grid">
+        <div class="gallery-item gallery-wide">
+          <ImagePlaceholder
+            slot="gallery-main"
+            description="Wide interior shot of the gym floor showing free weights, machines, and cardio equipment together. Landscape, 16:9, minimum 2400px."
+            aspectRatio="16/9"
+            src={galleryMainImg}
+            alt="Inside Tifton Fitness — free weights, bench, and training floor"
+            priority
+          />
+        </div>
+        <div class="gallery-item">
+          <ImagePlaceholder
+            slot="gallery-weights"
+            description="Close-up of dumbbell rack, 5–100 lbs, well-organized. Square or 4:3 crop."
+            aspectRatio="4/3"
+            src={galleryWeightsImg}
+            alt="Dumbbell rack and free weight area at Tifton Fitness"
+          />
+        </div>
+        <div class="gallery-item">
+          <ImagePlaceholder
+            slot="gallery-cardio"
+            description="Row of treadmills and ellipticals. Square or 4:3 crop."
+            aspectRatio="4/3"
+            src={galleryCardioImg}
+            alt="Training at Tifton Fitness with Jordan Roman — Best Personal Trainer 2026"
+          />
+        </div>
+        <div class="gallery-item">
+          <ImagePlaceholder
+            slot="gallery-cables"
+            description="Cable crossover system and machine area. Square or 4:3 crop."
+            aspectRatio="4/3"
+            src={galleryCablesImg}
+            alt="Training floor at Tifton Fitness — equipment and functional area"
+          />
+        </div>
+        <div class="gallery-item">
+          <ImagePlaceholder
+            slot="gallery-functional"
+            description="Functional training area with pull-up station and open floor space. Square or 4:3 crop."
+            aspectRatio="4/3"
+            src={galleryFunctionalImg}
+            alt="Kettlebell training at Tifton Fitness"
+            objectPosition="top"
+          />
+        </div>
+        <div class="gallery-item">
+          <ImagePlaceholder
+            slot="gallery-exterior"
+            description="Exterior of Tifton Fitness at 130 Hunt Rd B7. Daytime. Shows signage and entrance."
+            aspectRatio="4/3"
+            src={galleryExteriorImg}
+            alt="Tifton Fitness exterior — 130 Hunt Rd B7, Tifton GA"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EQUIPMENT LIST ────────────────────────────────── -->
+  <section class="section-pad bg-paper">
+    <div class="container">
+      <h2 class="section-title">Equipment</h2>
+      <div class="equipment-grid">
+        {equipmentZones.map((zone) => (
+          <div class="equipment-zone">
+            <h3 class="zone-name">{zone.name}</h3>
+            <ul class="zone-list">
+              {zone.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── AMENITIES ─────────────────────────────────────── -->
+  <section class="section-pad bg-gray-50">
+    <div class="container">
+      <div class="amenities-grid">
+        <div>
+          <h2 class="section-title">Amenities</h2>
+          <ul class="amenities-list">
+            <li>
+              <strong>24/7 key card access</strong>
+              <span>Your card works every hour, every day. No staffed-hours restrictions.</span>
+            </li>
+            <li>
+              <strong>Security cameras</strong>
+              <span>Interior and exterior cameras monitored around the clock.</span>
+            </li>
+            <li>
+              <strong>Full lighting</strong>
+              <span>Fully lit at all hours — no dark corners, no difference from noon to midnight.</span>
+            </li>
+            <li>
+              <strong>Restroom on-site</strong>
+              <span>Available for member use at all times.</span>
+            </li>
+            <li>
+              <strong>Parking</strong>
+              <span>Free parking directly in front of the gym, including overnight.</span>
+            </li>
+            <li>
+              <strong>Cleaning supplies</strong>
+              <span>Spray bottles and towels throughout — keep it clean for the next person.</span>
+            </li>
+            <li>
+              <strong>First aid kit</strong>
+              <span>Posted inside the facility. Emergency contact info on display.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="hours-panel">
+          <BusinessHours variant="large" />
+          <div class="hours-address">
+            <p>130 Hunt Rd B7<br />Tifton, GA 31793</p>
+            <a href="tel:+12293406228" class="btn-primary mt-3">Call (229) 340-6228</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GYM ETIQUETTE ─────────────────────────────────── -->
+  <section class="section-pad bg-paper">
+    <div class="container-prose">
+      <h2 class="section-title">Gym etiquette</h2>
+      <p class="section-intro">Four things that keep the gym great for everyone.</p>
+      <ol class="etiquette-list">
+        <li>
+          <strong>Wipe down equipment after use.</strong>
+          Use the spray bottles and towels provided. Every machine and bench, every time.
+        </li>
+        <li>
+          <strong>Re-rack your weights.</strong>
+          Put dumbbells, plates, and bars back where you found them. Keep the floor clear and safe.
+        </li>
+        <li>
+          <strong>Keep noise reasonable.</strong>
+          Headphones for music. Controlled drops are fine — slamming weights damages equipment.
+        </li>
+        <li>
+          <strong>Share during busy times.</strong>
+          Keep sets moving, offer to let others work in. It goes both ways.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ─── FACILITY FAQ ───────────────────────────────────── -->
+  <section class="section-pad bg-gray-50">
+    <div class="container-prose">
+      <h2 class="section-title">Facility questions</h2>
+      <div class="faq-list">
+        {facilityFaqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-question">{f.data.question}</summary>
+            <p class="faq-answer">{f.data.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    padding-block: clamp(3rem, 7vw, 6rem);
+    background-color: var(--color-paper);
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .page-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 0.75rem;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--color-ink);
+    margin-bottom: 1.25rem;
+    max-width: 600px;
+  }
+
+  .page-sub {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: var(--color-gray-600);
+    line-height: 1.65;
+    max-width: 580px;
+    margin: 0;
+  }
+
+  /* Gallery */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 0.75rem;
+  }
+
+  .gallery-wide {
+    grid-column: span 4;
+  }
+
+  .gallery-item {
+    overflow: hidden;
+    border-radius: 3px;
+  }
+
+  @media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-wide { grid-column: span 2; }
+  }
+
+  @media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-wide { grid-column: span 1; }
+  }
+
+  /* Equipment */
+  .section-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    color: var(--color-ink);
+    margin-bottom: 2rem;
+  }
+
+  .equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 4rem;
+  }
+
+  @media (max-width: 640px) {
+    .equipment-grid { grid-template-columns: 1fr; }
+  }
+
+  .zone-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--color-ink);
+    margin-bottom: 0.875rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-accent);
+    display: inline-block;
+  }
+
+  .zone-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .zone-list li {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-gray-800);
+  }
+
+  /* Amenities */
+  .amenities-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .amenities-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  .amenities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .amenities-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .amenities-list li:first-child {
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .amenities-list strong {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+
+  .amenities-list span {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-gray-600);
+    line-height: 1.5;
+  }
+
+  .hours-panel {
+    background-color: var(--color-paper);
+    border: 1px solid var(--color-gray-200);
+    border-radius: 4px;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .hours-address {
+    margin-top: 1.5rem;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hours-address p { margin: 0; color: var(--color-gray-600); }
+
+  .mt-3 { margin-top: 0; }
+
+  /* Etiquette */
+  .section-intro {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: var(--color-gray-600);
+    margin-bottom: 1.75rem;
+  }
+
+  .etiquette-list {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .etiquette-list li {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-gray-800);
+    line-height: 1.6;
+    padding-left: 0.5rem;
+  }
+
+  .etiquette-list strong {
+    color: var(--color-ink);
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+
+  /* FAQ */
+  .faq-list {
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .faq-question {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    cursor: pointer;
+    list-style: none;
+    padding: 1.25rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .faq-question::-webkit-details-marker { display: none; }
+
+  .faq-question::after {
+    content: '+';
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--color-gray-400);
+    flex-shrink: 0;
+    transition: transform 200ms;
+  }
+
+  details[open] .faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    line-height: 1.7;
+    padding-bottom: 1.25rem;
+    margin: 0;
+  }
+</style>

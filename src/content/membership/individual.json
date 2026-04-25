@@ -1,0 +1,17 @@
+{
+  "order": 1,
+  "name": "Individual",
+  "price": 25,
+  "period": "month",
+  "tagline": "Full access for one. Cancel whenever you want.",
+  "features": [
+    "Unlimited 24/7 key card access",
+    "Full cardio and weight floor",
+    "Cables, machines, functional area",
+    "Free orientation session",
+    "No contract — month-to-month",
+    "No sign-up fee"
+  ],
+  "cta": "Start Your Membership",
+  "featured": false
+}

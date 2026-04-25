@@ -1,0 +1,113 @@
+---
+import ImagePlaceholder from './ImagePlaceholder.astro';
+
+interface Props {
+  name: string;
+  role: string;
+  credentials: string[];
+  bio: string;
+  imageSrc?: ImageMetadata;
+  objectPosition?: string;
+}
+
+const { name, role, credentials, bio, imageSrc, objectPosition = 'center' } = Astro.props;
+---
+
+<div class="staff-card">
+  <div class="portrait">
+    <ImagePlaceholder
+      slot={`staff-${name.toLowerCase().replace(' ', '-')}`}
+      description={`Portrait of ${name}, ${role} at Tifton Fitness. Professional photo, natural light, square crop.`}
+      aspectRatio="1/1"
+      src={imageSrc}
+      alt={`${name} — ${role}`}
+      class="portrait-img"
+      objectPosition={objectPosition}
+    />
+  </div>
+
+  <div class="staff-info">
+    <p class="staff-name">{name}</p>
+    <p class="staff-role">{role}</p>
+    <ul class="credentials">
+      {credentials.map((c) => <li>{c}</li>)}
+    </ul>
+    <p class="staff-bio">{bio}</p>
+  </div>
+</div>
+
+<style>
+  .staff-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media (max-width: 640px) {
+    .staff-card {
+      grid-template-columns: 1fr;
+    }
+
+    .portrait {
+      max-width: 200px;
+    }
+  }
+
+  .portrait {
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .portrait-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .staff-name {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 0 0 0.25rem;
+  }
+
+  .staff-role {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 1rem;
+  }
+
+  .credentials {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .credentials li {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-gray-600);
+    background-color: var(--color-gray-100);
+    border-radius: 3px;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .staff-bio {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-gray-800);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>

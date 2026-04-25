@@ -1,0 +1,66 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/membership', label: 'Membership' },
+  { href: '/gym', label: 'The Gym' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<footer class="bg-gray-900 text-paper">
+  <div class="container py-14">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+      <!-- Brand + address -->
+      <div>
+        <p class="font-display font-bold text-xl text-paper mb-3">Tifton Fitness</p>
+        <address class="not-italic font-body text-sm text-gray-400 leading-relaxed">
+          130 Hunt Rd B7<br />
+          Tifton, GA 31793<br /><br />
+          <a href="tel:+12293406228" class="text-paper hover:text-accent-light no-underline transition-colors">
+            (229) 340-6228
+          </a>
+        </address>
+        <p class="font-body text-sm text-gray-400 mt-3">Open 24/7 — 365 days a year</p>
+      </div>
+
+      <!-- Nav -->
+      <div>
+        <p class="font-body font-semibold text-xs uppercase tracking-widest text-gray-400 mb-4">Pages</p>
+        <nav class="flex flex-col gap-2">
+          {navLinks.map(({ href, label }) => (
+            <a href={href} class="font-body text-sm text-gray-400 hover:text-paper no-underline transition-colors">
+              {label}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      <!-- CTA -->
+      <div>
+        <p class="font-display font-bold text-lg text-paper mb-2">
+          Ready to get started?
+        </p>
+        <p class="font-body text-sm text-gray-400 mb-5">
+          No appointment needed. Walk in anytime or call us to schedule a free tour.
+        </p>
+        <a href="/contact" class="btn-outline-white text-sm">
+          Schedule a Free Tour
+        </a>
+      </div>
+
+    </div>
+
+    <div class="border-t border-gray-800 mt-12 pt-6 flex flex-col sm:flex-row justify-between gap-3">
+      <p class="font-body text-xs text-gray-400">
+        &copy; {new Date().getFullYear()} Tifton Fitness. All rights reserved.
+      </p>
+      <p class="font-body text-xs text-gray-400">
+        Tifton Gazette Best Fitness Center 2026
+      </p>
+    </div>
+
+  </div>
+</footer>

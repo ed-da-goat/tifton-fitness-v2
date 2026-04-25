@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@theme {
+  /* ─── Color palette ─────────────────────────────── */
+  --color-accent:       #1F5F3F;
+  --color-accent-light: #2D7A55;
+  --color-accent-dark:  #163F2A;
+  --color-accent-muted: #EBF5EF;
+
+  --color-ink:          #0A0A0A;
+  --color-paper:        #FAFAF7;
+
+  --color-gray-50:      #F5F5F0;
+  --color-gray-100:     #EBEBEB;
+  --color-gray-200:     #D8D8D0;
+  --color-gray-400:     #9A9A90;
+  --color-gray-600:     #606058;
+  --color-gray-800:     #2A2A25;
+  --color-gray-900:     #1A1A16;
+
+  /* ─── Typography ────────────────────────────────── */
+  --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --font-body:    "Inter Tight Variable", "Inter Tight", system-ui, sans-serif;
+
+  /* ─── Spacing ───────────────────────────────────── */
+  --spacing-section: clamp(4rem, 8vw, 7rem);
+  --spacing-gutter:  clamp(1.25rem, 5vw, 2.5rem);
+}
+
+/* ─── Base ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-body);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+p {
+  line-height: 1.65;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+/* ─── Layout utilities ─────────────────────────────── */
+@utility container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+@utility container-prose {
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+@utility section-pad {
+  padding-block: var(--spacing-section);
+}
+
+/* ─── Button system ────────────────────────────────── */
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-accent);
+  color: var(--color-paper);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.01em;
+  padding: 0.875rem 1.75rem;
+  border-radius: 4px;
+  border: 2px solid var(--color-accent);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+@utility btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.01em;
+  padding: 0.875rem 1.75rem;
+  border-radius: 4px;
+  border: 2px solid currentColor;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+@utility sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@utility btn-outline-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--color-paper);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.01em;
+  padding: 0.875rem 1.75rem;
+  border-radius: 4px;
+  border: 2px solid var(--color-paper);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 150ms ease, color 150ms ease;
+}

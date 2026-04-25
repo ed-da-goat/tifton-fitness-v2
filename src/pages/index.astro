@@ -1,17 +1,746 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import MembershipCard from '../components/MembershipCard.astro';
+import MapEmbed from '../components/MapEmbed.astro';
+import BusinessHours from '../components/BusinessHours.astro';
+import { getCollection } from 'astro:content';
+import heroImg from '../assets/images/hero/tifton-001.jpg';
+import awardImg from '../assets/images/tifton-016.jpg';
+import jordanImg from '../assets/images/staff/jordan-roman.webp';
+import gymFreeWeightsImg from '../assets/images/gym/free-weights.jpg';
+import gymCardioImg from '../assets/images/gym/cardio-row.jpg';
+import gymFunctionalImg from '../assets/images/gym/functional-tf-method.jpg';
+import gymMachinesImg from '../assets/images/gym/machines-floor.jpg';
 
+const memberships = (await getCollection('membership')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  "name": "Tifton Fitness",
+  "url": "https://tiftonfitness.com",
+  "telephone": "+12293406228",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "130 Hunt Rd B7",
+    "addressLocality": "Tifton",
+    "addressRegion": "GA",
+    "postalCode": "31793",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 31.4620,
+    "longitude": -83.5230
+  },
+  "openingHours": "Mo-Su 00:00-23:59",
+  "priceRange": "$25–$55/month",
+  "description": "24/7 gym in Tifton, GA. No contracts, month-to-month membership starting at $25. Full equipment access, key card entry.",
+  "award": ["Tifton Gazette Best Fitness Center 2026"]
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="Tifton Fitness — 24/7 Gym in Tifton, GA"
+  description="Month-to-month membership starting at $25. No contracts, 24/7 key card access, full equipment. Tifton Gazette Best Fitness Center 2026."
+  jsonLd={jsonLd}
+>
+
+  <!-- ─── HERO ─────────────────────────────────────────── -->
+  <section class="hero-section">
+    <div class="hero-image-wrap">
+      <ImagePlaceholder
+        slot="hero-main"
+        description="Wide interior shot showing the free weight floor and equipment, members visible in background, natural light. Horizontal, 16:9, minimum 2400px wide."
+        aspectRatio="21/9"
+        src={heroImg}
+        alt="Inside Tifton Fitness — free weights and cardio equipment"
+        class="hero-img"
+        priority
+      />
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content container">
+      <p class="hero-eyebrow">Tifton, GA &mdash; Open 24/7</p>
+      <h1 class="hero-headline">
+        No contract.<br />No closing time.
+      </h1>
+      <p class="hero-sub">
+        24/7 key card access, full equipment, month-to-month billing.
+        Starting at $25.
+      </p>
+      <div class="hero-ctas">
+        <a href="/contact" class="btn-primary">Schedule a Free Tour</a>
+        <a href="/membership" class="btn-outline-white">See Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── AWARDS BAR ────────────────────────────────────── -->
+  <section class="awards-bar">
+    <div class="container">
+      <div class="awards-inner">
+        <div class="award-item">
+          <span class="award-title">Best Fitness Center 2026</span>
+          <span class="award-source">Tifton Gazette</span>
+        </div>
+        <div class="award-divider"></div>
+        <div class="award-item">
+          <span class="award-title">Best Personal Trainer 2026</span>
+          <span class="award-source">Jordan Roman &mdash; Tifton Gazette</span>
+        </div>
+        <div class="award-divider"></div>
+        <div class="award-item">
+          <span class="award-title">Open 24/7</span>
+          <span class="award-source">365 days a year</span>
+        </div>
+        <div class="award-divider"></div>
+        <div class="award-item">
+          <span class="award-title">(229) 340-6228</span>
+          <span class="award-source">Call or walk in anytime</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHAT'S INSIDE ─────────────────────────────────── -->
+  <section class="section-pad bg-paper">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">What's inside</h2>
+        <p class="section-sub">
+          Everything you need. Nothing you don't.
+          Full access included with every membership.
+        </p>
+      </div>
+
+      <div class="equipment-grid">
+
+        <div class="equipment-zone">
+          <ImagePlaceholder
+            slot="gym-free-weights"
+            description="Free weight area: dumbbell rack 5–100 lbs, Olympic barbells, flat/incline/decline benches. Eye-level shot, square-ish crop."
+            aspectRatio="4/3"
+            src={gymFreeWeightsImg}
+            alt="Free weight area at Tifton Fitness — dumbbell rack and bench"
+          />
+          <div class="zone-info">
+            <h3 class="zone-name">Free Weights</h3>
+            <p class="zone-detail">Dumbbells 5–100 lbs · Olympic bars & plates · EZ curl bars · Kettlebells · Flat, incline & decline benches</p>
+          </div>
+        </div>
+
+        <div class="equipment-zone">
+          <ImagePlaceholder
+            slot="gym-cardio"
+            description="Cardio section: row of treadmills, ellipticals, and bikes. Wide shot, square-ish crop."
+            aspectRatio="4/3"
+            src={gymCardioImg}
+            alt="Cardio row at Tifton Fitness — treadmills and stair climber"
+          />
+          <div class="zone-info">
+            <h3 class="zone-name">Cardio</h3>
+            <p class="zone-detail">Treadmills · Ellipticals · Upright & recumbent bikes · Stair climber · Rowing machine</p>
+          </div>
+        </div>
+
+        <div class="equipment-zone">
+          <ImagePlaceholder
+            slot="gym-machines"
+            description="Machine section: cable crossover, Smith machine, leg press. Square-ish crop."
+            aspectRatio="4/3"
+            src={gymMachinesImg}
+            alt="Training at Tifton Fitness — kettlebell workout"
+          />
+          <div class="zone-info">
+            <h3 class="zone-name">Machines</h3>
+            <p class="zone-detail">Smith machine · Cable crossover · Lat pulldown / low row · Leg press & leg curl · Chest & shoulder press</p>
+          </div>
+        </div>
+
+        <div class="equipment-zone">
+          <ImagePlaceholder
+            slot="gym-functional"
+            description="Functional training area: pull-up station, kettlebells, mats. Square-ish crop."
+            aspectRatio="4/3"
+            src={gymFunctionalImg}
+            alt="Functional training area at Tifton Fitness — turf floor, open equipment"
+            objectPosition="top"
+          />
+          <div class="zone-info">
+            <h3 class="zone-name">Functional & Flexibility</h3>
+            <p class="zone-detail">Pull-up & dip station · Resistance bands · Medicine & slam balls · Ab rollers & mats · Stretching area</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="equipment-cta">
+        <a href="/gym" class="btn-outline">See Full Equipment List</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MEMBERSHIP PREVIEW ────────────────────────────── -->
+  <section class="section-pad bg-gray-50">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Simple, honest pricing</h2>
+        <p class="section-sub">
+          No initiation fees. No annual charges. No hidden costs.
+          The price you see is the price you pay.
+        </p>
+      </div>
+
+      <div class="membership-grid">
+        {memberships.map((m) => (
+          <MembershipCard
+            name={m.data.name}
+            price={m.data.price}
+            period={m.data.period}
+            tagline={m.data.tagline}
+            features={m.data.features}
+            cta={m.data.cta}
+            featured={m.data.featured}
+          />
+        ))}
+      </div>
+
+      <p class="membership-note">
+        Cash, check, or card. Cancel anytime before your next billing date.
+        <a href="/membership">Full membership details &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── HOURS & LOCATION ──────────────────────────────── -->
+  <section class="section-pad bg-paper">
+    <div class="container">
+      <div class="location-grid">
+
+        <div class="location-left">
+          <BusinessHours variant="large" />
+          <div class="location-detail">
+            <p class="location-address">
+              130 Hunt Rd B7<br />
+              Tifton, GA 31793
+            </p>
+            <p class="location-note">Off Hunt Rd, near Hobby Lobby</p>
+            <div class="location-actions">
+              <a href="tel:+12293406228" class="btn-primary">
+                Call (229) 340-6228
+              </a>
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=130+Hunt+Rd+B7,+Tifton,+GA+31793"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-outline"
+              >
+                Get Directions
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="location-right">
+          <MapEmbed />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── COACH PREVIEW ─────────────────────────────────── -->
+  <section class="section-pad bg-accent-dark text-paper">
+    <div class="container">
+      <div class="coach-grid">
+
+        <div class="coach-image">
+          <ImagePlaceholder
+            slot="staff-jordan-portrait"
+            description="Portrait of Jordan Roman, Head Coach. Professional, approachable. Square crop, natural or studio light."
+            aspectRatio="1/1"
+            src={jordanImg}
+            alt="Jordan Roman — Head Coach, Tifton Fitness"
+            class="coach-img"
+            objectPosition="top"
+          />
+        </div>
+
+        <div class="coach-info">
+          <p class="coach-eyebrow">Meet your coach</p>
+          <h2 class="coach-name">Jordan Roman</h2>
+          <ul class="coach-creds">
+            <li>B.S. Exercise Science</li>
+            <li>Action-CPT</li>
+            <li>3× NCAA Conference Champion</li>
+            <li>National Classic Physique Competitor</li>
+            <li>Best Personal Trainer 2026 &mdash; Tifton Gazette</li>
+          </ul>
+          <p class="coach-services">
+            1-on-1 coaching &bull; Group classes &bull; Semi-private sessions
+          </p>
+          <a href="/about" class="btn-outline-white mt-4">
+            Work With Jordan
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── REVIEWS ───────────────────────────────────────── -->
+  <section class="section-pad bg-paper">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">What members say</h2>
+      </div>
+
+      <div class="reviews-grid">
+
+        <blockquote class="review-card review-featured">
+          <p class="review-text">
+            "I cant say enough good about Tifton Fitness. The staff is kind and helpful.
+            The owners are terrific and they have great equipment. The gym is always clean and tidy.
+            Training sessions are intense in the best possible way. All in all a wonderful atmosphere
+            that feels welcoming and homey."
+          </p>
+          <footer class="review-footer">
+            <cite class="review-author">Austin Ball</cite>
+          </footer>
+        </blockquote>
+
+        <blockquote class="review-card">
+          <p class="review-text">
+            "This is by the BEST place to come and get fit! The owners are super awesome
+            and the trainers are awesome and really care about making you a better you!
+            HIGHLY RECOMMEND!!"
+          </p>
+          <footer class="review-footer">
+            <cite class="review-author">Vanessa Martinez</cite>
+          </footer>
+        </blockquote>
+
+        <blockquote class="review-card">
+          <p class="review-text">
+            "Great place to work out! Very clean, 24 hour access, the staff is friendly and knowledgeable.
+            Shout out to Jordan!"
+          </p>
+          <footer class="review-footer">
+            <cite class="review-author">Stephon Sykes</cite>
+          </footer>
+        </blockquote>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FINAL CTA ──────────────────────────────────────── -->
+  <section class="final-cta section-pad">
+    <div class="container-prose text-center">
+      <h2 class="final-cta-title">
+        Start tonight.
+      </h2>
+      <p class="final-cta-sub">
+        No paperwork, no waiting period. Walk in, get a tour, start your
+        membership the same day. The gym is open whenever you are.
+      </p>
+      <div class="final-cta-actions">
+        <a href="/contact" class="btn-primary">Schedule a Free Tour</a>
+        <a href="tel:+12293406228" class="btn-outline-white">Call (229) 340-6228</a>
+      </div>
+      <p class="final-cta-address">130 Hunt Rd B7 &bull; Tifton, GA 31793</p>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* Hero */
+  .hero-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    position: relative;
+  }
+
+  .hero-img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(10, 10, 10, 0.52);
+  }
+
+  .hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: 4rem;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250, 250, 247, 0.75);
+    margin: 0 0 0.75rem;
+  }
+
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 7vw, 5.5rem);
+    font-weight: 800;
+    color: var(--color-paper);
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin: 0 0 1.25rem;
+    max-width: 700px;
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.1875rem);
+    color: rgba(250, 250, 247, 0.85);
+    line-height: 1.55;
+    margin: 0 0 2rem;
+    max-width: 480px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  /* Awards bar */
+  .awards-bar {
+    background-color: var(--color-accent);
+    padding-block: 1.25rem;
+  }
+
+  .awards-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .award-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 1.75rem;
+    text-align: center;
+  }
+
+  .award-title {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-paper);
+  }
+
+  .award-source {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: rgba(250, 250, 247, 0.75);
+    margin-top: 0.125rem;
+  }
+
+  .award-divider {
+    width: 1px;
+    height: 2rem;
+    background-color: rgba(250, 250, 247, 0.25);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .award-divider { display: none; }
+    .award-item { padding: 0.4rem 1rem; }
+  }
+
+  /* Section header */
+  .section-header {
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-ink);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-sub {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: var(--color-gray-600);
+    max-width: 560px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Equipment grid */
+  .equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .equipment-grid { grid-template-columns: 1fr; }
+  }
+
+  .equipment-zone {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .zone-info {
+    padding-top: 0.25rem;
+  }
+
+  .zone-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--color-ink);
+    margin-bottom: 0.375rem;
+  }
+
+  .zone-detail {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-gray-600);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .equipment-cta {
+    margin-top: 2.5rem;
+  }
+
+  /* Membership grid */
+  .membership-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .membership-grid { grid-template-columns: 1fr; max-width: 400px; }
+  }
+
+  .membership-note {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-gray-600);
+    margin-top: 1.5rem;
+  }
+
+  .membership-note a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* Location */
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .location-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  .location-address {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 2rem 0 0.25rem;
+    font-style: normal;
+    line-height: 1.3;
+  }
+
+  .location-note {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-gray-600);
+    margin: 0 0 1.5rem;
+  }
+
+  .location-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  /* Coach section */
+  .bg-accent-dark {
+    background-color: var(--color-accent-dark);
+  }
+
+  .coach-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .coach-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .coach-image { max-width: 200px; }
+  }
+
+  .coach-img {
+    border-radius: 4px;
+    width: 100%;
+    display: block;
+  }
+
+  .coach-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(250, 250, 247, 0.6);
+    margin: 0 0 0.5rem;
+  }
+
+  .coach-name {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-paper);
+    margin-bottom: 1.25rem;
+  }
+
+  .coach-creds {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .coach-creds li {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: rgba(250, 250, 247, 0.8);
+  }
+
+  .coach-services {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: rgba(250, 250, 247, 0.65);
+    margin: 0;
+  }
+
+  .mt-4 { margin-top: 1.5rem; }
+
+  /* Reviews */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .reviews-grid { grid-template-columns: 1fr; }
+    .review-featured { order: -1; }
+  }
+
+  .review-card {
+    background-color: var(--color-gray-50);
+    border: 1px solid var(--color-gray-200);
+    border-radius: 4px;
+    padding: 1.75rem;
+    margin: 0;
+  }
+
+  .review-featured {
+    border-color: var(--color-accent);
+    border-width: 2px;
+  }
+
+  .review-text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-gray-800);
+    line-height: 1.65;
+    margin: 0 0 1.25rem;
+  }
+
+  .review-footer {
+    display: block;
+  }
+
+  .review-author {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--color-ink);
+  }
+
+  /* Final CTA */
+  .final-cta {
+    background-color: var(--color-ink);
+  }
+
+  .final-cta-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: var(--color-paper);
+    margin-bottom: 1rem;
+  }
+
+  .final-cta-sub {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: rgba(250, 250, 247, 0.75);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .final-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .final-cta-actions .btn-outline-white {
+    color: var(--color-paper);
+    border-color: var(--color-paper);
+  }
+
+  .final-cta-address {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: rgba(250, 250, 247, 0.45);
+    margin: 0;
+  }
+</style>

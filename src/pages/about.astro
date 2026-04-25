@@ -1,0 +1,286 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StaffCard from '../components/StaffCard.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import { getCollection } from 'astro:content';
+import jordanImg from '../assets/images/staff/jordan-roman.webp';
+import awardGymImg from '../assets/images/tifton-016.jpg';
+import awardTrainerImg from '../assets/images/tifton-015.jpg';
+
+const staff = await getCollection('staff');
+const jordan = staff.find((s) => s.id === 'jordan-roman');
+---
+
+<Layout
+  title="About — Tifton Fitness"
+  description="Meet the team behind Tifton Fitness. Jordan Roman, Best Personal Trainer 2026 per Tifton Gazette. 24/7 gym in Tifton, GA."
+>
+
+  <!-- ─── PAGE HEADER ───────────────────────────────────── -->
+  <section class="page-header">
+    <div class="container">
+      <p class="page-eyebrow">About</p>
+      <h1 class="page-title">Tifton's gym.</h1>
+      <p class="page-sub">
+        A 24-hour facility built for real people with real schedules — shift workers,
+        parents, students, athletes, and everyone in between.
+        Named Tifton Gazette's Best Fitness Center 2026.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── AWARDS ────────────────────────────────────────── -->
+  <section class="section-pad bg-accent-muted">
+    <div class="container">
+      <div class="awards-grid">
+        <div class="award-block">
+          <ImagePlaceholder
+            slot="award-best-gym"
+            description="Tifton Gazette Best Fitness Center 2026 award graphic or plaque photo."
+            aspectRatio="1/1"
+            width="160px"
+            class="award-img"
+            src={awardGymImg}
+            alt="Tifton Gazette Best Fitness Center 2026 award"
+          />
+          <div>
+            <p class="award-label">Tifton Gazette</p>
+            <p class="award-name">Best Fitness Center 2026</p>
+          </div>
+        </div>
+        <div class="award-block">
+          <ImagePlaceholder
+            slot="award-best-trainer"
+            description="Tifton Gazette Best Personal Trainer 2026 award graphic featuring Jordan Roman."
+            aspectRatio="1/1"
+            width="160px"
+            class="award-img"
+            src={awardTrainerImg}
+            alt="Tifton Gazette Best Personal Trainer 2026 — Jordan Roman"
+          />
+          <div>
+            <p class="award-label">Tifton Gazette</p>
+            <p class="award-name">Best Personal Trainer 2026 — Jordan Roman</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── STAFF ─────────────────────────────────────────── -->
+  {jordan && (
+    <section class="section-pad bg-paper">
+      <div class="container">
+        <h2 class="section-title">Meet the coach</h2>
+        <StaffCard
+          name={jordan.data.name}
+          role={jordan.data.role}
+          credentials={jordan.data.credentials}
+          bio={jordan.data.bio}
+          imageSrc={jordanImg}
+          objectPosition="top"
+        />
+
+        <div class="coaching-services">
+          <h3 class="services-title">Training options</h3>
+          <div class="services-grid">
+            <div class="service-item">
+              <p class="service-name">1-on-1 Coaching</p>
+              <p class="service-desc">Custom program built around your goals, schedule, and experience level. Sessions scheduled around your availability.</p>
+            </div>
+            <div class="service-item">
+              <p class="service-name">Group Classes</p>
+              <p class="service-desc">FORGE functional strength and HIIT classes run on a weekly schedule. Great for accountability and community.</p>
+            </div>
+            <div class="service-item">
+              <p class="service-name">Semi-Private Sessions</p>
+              <p class="service-desc">Train with a small group under Jordan's direct coaching. More personalized than a class, more affordable than 1-on-1.</p>
+            </div>
+          </div>
+          <a href="/contact" class="btn-primary mt-cta">Get in Touch About Coaching</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ─── COMMUNITY CTA ─────────────────────────────────── -->
+  <section class="section-pad bg-ink text-paper">
+    <div class="container-prose text-center">
+      <h2 class="cta-title">Come see it yourself.</h2>
+      <p class="cta-sub">
+        No appointment needed. Walk in anytime and we'll give you a full tour.
+        If you'd like to make sure someone is available, give us a call.
+      </p>
+      <div class="cta-actions">
+        <a href="/contact" class="btn-outline-white">Schedule a Free Tour</a>
+        <a href="tel:+12293406228" class="btn-outline-white">Call (229) 340-6228</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    padding-block: clamp(3rem, 7vw, 6rem);
+    background-color: var(--color-paper);
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .page-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 0.75rem;
+  }
+
+  .page-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--color-ink);
+    margin-bottom: 1rem;
+  }
+
+  .page-sub {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: var(--color-gray-600);
+    line-height: 1.65;
+    max-width: 600px;
+    margin: 0;
+  }
+
+  /* Awards */
+  .bg-accent-muted {
+    background-color: var(--color-accent-muted);
+  }
+
+  .awards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+  }
+
+  .award-block {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 2.5rem;
+  }
+
+  .award-block:not(:last-child) {
+    border-right: 1px solid var(--color-gray-200);
+  }
+
+  @media (max-width: 600px) {
+    .award-block:not(:last-child) {
+      border-right: none;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--color-gray-200);
+    }
+    .award-block:last-child {
+      padding-top: 2rem;
+    }
+  }
+
+  .award-img {
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .award-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 0.2rem;
+  }
+
+  .award-name {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  /* Staff */
+  .section-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    color: var(--color-ink);
+    margin-bottom: 2.5rem;
+  }
+
+  .coaching-services {
+    margin-top: 3.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .services-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-ink);
+    margin-bottom: 1.75rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  .service-name {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 0 0 0.5rem;
+  }
+
+  .service-desc {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-gray-600);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .mt-cta { margin-top: 0.5rem; }
+
+  /* Community CTA */
+  .bg-ink { background-color: var(--color-ink); }
+  .text-paper { color: var(--color-paper); }
+
+  .cta-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--color-paper);
+    margin-bottom: 1rem;
+  }
+
+  .cta-sub {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: rgba(250, 250, 247, 0.75);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+</style>
