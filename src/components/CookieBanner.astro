@@ -1,0 +1,123 @@
+---
+---
+
+<div
+  id="cookie-banner"
+  role="dialog"
+  aria-label="Cookie consent"
+  aria-live="polite"
+  class="cookie-banner"
+  hidden
+>
+  <div class="cookie-inner">
+    <p class="cookie-text">
+      We use Google Analytics to understand how visitors use this site.
+      No data is collected until you accept.
+      <a href="/privacy" class="cookie-link">Privacy policy</a>
+    </p>
+    <div class="cookie-actions">
+      <button id="cookie-decline" class="cookie-btn cookie-btn--decline">Decline</button>
+      <button id="cookie-accept" class="cookie-btn cookie-btn--accept">Accept</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1A1A16;
+    border-top: 1px solid #2A2A25;
+    z-index: 9999;
+    padding: 1rem 1.25rem;
+  }
+
+  .cookie-inner {
+    max-width: 1280px;
+    margin-inline: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+  }
+
+  .cookie-text {
+    flex: 1;
+    min-width: 200px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: #9A9A90;
+    line-height: 1.5;
+  }
+
+  .cookie-link {
+    color: #FAFAF7;
+    text-underline-offset: 2px;
+  }
+
+  .cookie-actions {
+    display: flex;
+    gap: 0.625rem;
+    flex-shrink: 0;
+  }
+
+  .cookie-btn {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.5rem 1.125rem;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 150ms ease;
+  }
+
+  .cookie-btn--decline {
+    background: transparent;
+    color: #9A9A90;
+    border-color: #2A2A25;
+  }
+
+  .cookie-btn--decline:hover {
+    color: #FAFAF7;
+    border-color: #606058;
+  }
+
+  .cookie-btn--accept {
+    background: #1F5F3F;
+    color: #FAFAF7;
+    border-color: #1F5F3F;
+  }
+
+  .cookie-btn--accept:hover {
+    background: #2D7A55;
+    border-color: #2D7A55;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var banner = document.getElementById('cookie-banner');
+    var stored = localStorage.getItem('tf_consent');
+
+    if (!stored) {
+      banner.removeAttribute('hidden');
+    }
+
+    document.getElementById('cookie-accept').addEventListener('click', function () {
+      localStorage.setItem('tf_consent', 'granted');
+      if (typeof gtag === 'function') {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+      }
+      banner.setAttribute('hidden', '');
+    });
+
+    document.getElementById('cookie-decline').addEventListener('click', function () {
+      localStorage.setItem('tf_consent', 'denied');
+      banner.setAttribute('hidden', '');
+    });
+  })();
+</script>

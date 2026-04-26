@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Privacy Policy — Tifton Fitness"
+  description="How Tifton Fitness collects and uses data from visitors to this website."
+>
+  <section class="section-pad">
+    <div class="container-prose">
+
+      <h1>Privacy Policy</h1>
+      <p class="meta">Last updated: April 26, 2026</p>
+
+      <p>
+        This policy explains what information is collected when you visit tiftonfitness.com
+        and how it is used. We do not sell your data.
+      </p>
+
+      <h2>Analytics — Google Analytics 4</h2>
+      <p>
+        We use Google Analytics 4 (GA4) to understand how visitors use this site — which pages
+        are viewed, how long visits last, and how people arrive. GA4 sets cookies on your device
+        to track this activity across sessions.
+      </p>
+      <p>
+        <strong>We only activate analytics if you accept cookies.</strong> If you decline or ignore
+        the cookie banner, no analytics data is collected.
+      </p>
+      <p>
+        Google may process analytics data on servers in the United States.
+        See <a href="https://policies.google.com/privacy" rel="noopener">Google's privacy policy</a>
+        for details on how they handle this data.
+      </p>
+
+      <h2>Fonts — Google Fonts</h2>
+      <p>
+        This site loads fonts (Fraunces and Inter Tight) from Google Fonts. When your browser
+        requests a font file, Google receives your IP address. No cookie is set by this request.
+        See <a href="https://developers.google.com/fonts/faq/privacy" rel="noopener">Google Fonts privacy FAQ</a>.
+      </p>
+
+      <h2>Contact Form — Formspree</h2>
+      <p>
+        The contact form on this site submits to <a href="https://formspree.io" rel="noopener">Formspree</a>,
+        a third-party form service. When you submit the form, Formspree receives your name,
+        phone number, email address (if provided), and message. Formspree forwards this to us
+        by email and stores a copy in their system.
+      </p>
+      <p>
+        We use submitted information only to respond to your inquiry. We do not add you to
+        any mailing list without your explicit request.
+        See <a href="https://formspree.io/legal/privacy-policy" rel="noopener">Formspree's privacy policy</a>.
+      </p>
+
+      <h2>Maps — Google Maps</h2>
+      <p>
+        The gym page includes an embedded Google Maps iframe showing our location.
+        Loading the map sends a request to Google, which may set cookies and collect your
+        IP address. If you have a Google account, this may be associated with it.
+        See <a href="https://policies.google.com/privacy" rel="noopener">Google's privacy policy</a>.
+      </p>
+
+      <h2>Membership Signup — GloFox</h2>
+      <p>
+        The membership page embeds the GloFox portal, a third-party gym management platform.
+        If you sign up for a membership, GloFox collects your name, contact details,
+        and payment information. We do not process or store payment information ourselves.
+        See <a href="https://www.glofox.com/privacy-policy/" rel="noopener">GloFox's privacy policy</a>.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>
+        This site sets one first-party cookie preference key (<code>tf_consent</code>) in your
+        browser's local storage to remember your cookie consent decision. No other cookies
+        are set by this site directly. Third-party services (GA4, Google Maps) may set their
+        own cookies if you accept analytics.
+      </p>
+
+      <h2>Your Rights</h2>
+      <p>
+        You can decline analytics at any time by clicking "Decline" on the cookie banner,
+        or by clearing your browser's local storage for this site. If you submitted a contact
+        form and want your information removed from Formspree's records, contact us and we
+        will request deletion on your behalf.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this policy? Reach us at:
+      </p>
+      <address>
+        Tifton Fitness<br />
+        130 Hunt Rd B7, Tifton, GA 31793<br />
+        <a href="tel:+12293406228">(229) 340-6228</a>
+      </address>
+
+    </div>
+  </section>
+</Layout>
+
+<style>
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .meta {
+    font-size: 0.875rem;
+    color: var(--color-gray-400);
+    margin-bottom: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  p, address {
+    font-size: 1rem;
+    color: var(--color-gray-600);
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: var(--color-accent);
+    text-underline-offset: 2px;
+  }
+
+  code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.875em;
+    background: var(--color-gray-50);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+
+  address {
+    font-style: normal;
+    line-height: 1.8;
+  }
+</style>
