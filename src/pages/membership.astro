@@ -14,7 +14,7 @@ const faqs = (await getCollection('faq'))
 
 <Layout
   title="Memberships — Tifton Fitness"
-  description="Month-to-month gym memberships in Tifton, GA. Individual $25/mo, Couple $40/mo, Family $55/mo. No contracts, no hidden fees, cancel anytime."
+  description="Gym memberships in Tifton, GA. Month-to-month $50/mo or contract plans starting at $30/mo. 24/7 access, no hidden fees."
 >
 
   <!-- ─── PAGE HEADER ───────────────────────────────────── -->
@@ -22,13 +22,12 @@ const faqs = (await getCollection('faq'))
     <div class="container">
       <p class="page-eyebrow">Pricing</p>
       <h1 class="page-title">
-        Straightforward gym membership.<br />
-        Month to month.
+        Simple gym memberships.<br />
+        Choose your commitment.
       </h1>
       <p class="page-sub">
-        We earn your membership every month. Stay because you want to,
-        not because you're locked in. No initiation fees, no annual charges,
-        no cancellation penalties.
+        Month-to-month flexibility or long-term savings — we have a plan for
+        every commitment level. No hidden fees, no surprises.
       </p>
     </div>
   </section>
@@ -45,14 +44,19 @@ const faqs = (await getCollection('faq'))
             tagline={m.data.tagline}
             features={m.data.features}
             cta={m.data.cta}
+            ctaHref="#join"
             featured={m.data.featured}
           />
         ))}
       </div>
 
+      <p class="pif-note">
+        Prefer to pay upfront? 3-, 6-, and 12-month paid-in-full plans are also available — <a href="#join">see all options below</a>.
+      </p>
+
       <p class="payment-note">
         We accept cash, checks, and all major credit and debit cards.
-        Billing is monthly on the date you signed up.
+        Joining fees and monthly billing apply per plan — see full details below.
       </p>
     </div>
   </section>
@@ -90,8 +94,8 @@ const faqs = (await getCollection('faq'))
         </div>
 
         <div class="perk">
-          <h3 class="perk-name">Month-to-Month Billing</h3>
-          <p class="perk-desc">No annual fees, no initiation costs, no cancellation penalties. Ever.</p>
+          <h3 class="perk-name">Transparent Billing</h3>
+          <p class="perk-desc">No hidden fees. Clear monthly billing — joining fees, terms, and rates spelled out up front.</p>
         </div>
 
       </div>
@@ -117,6 +121,32 @@ const faqs = (await getCollection('faq'))
         <a href="tel:+12293406228" class="btn-primary">Call (229) 340-6228</a>
         <a href="/contact" class="btn-outline">Send a Message</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ─── JOIN / GLOFOX EMBED ──────────────────────── -->
+  <section id="join" class="section-pad bg-paper">
+    <div class="container">
+      <h2 class="join-heading">Sign up today</h2>
+      <p class="join-sub">
+        Choose your plan and complete your membership below.
+        All options — including 3-month and paid-in-full plans — are available here.
+      </p>
+      <div class="glofox-wrap">
+        <iframe
+          src="https://app.glofox.com/portal/#/branch/69321543c5a54a285f0fff2c/memberships"
+          frameborder="0"
+          width="100%"
+          height="1200"
+          title="Tifton Fitness membership signup"
+          loading="lazy"
+        ></iframe>
+      </div>
+      <p class="glofox-credit">
+        <a href="https://www.glofox.com" target="_blank" rel="noopener noreferrer">
+          powered by Glofox
+        </a>
+      </p>
     </div>
   </section>
 
@@ -166,11 +196,24 @@ const faqs = (await getCollection('faq'))
     .membership-grid { grid-template-columns: 1fr; max-width: 420px; }
   }
 
+  .pif-note {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    margin-top: 1.75rem;
+  }
+
+  .pif-note a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
   .payment-note {
     font-family: var(--font-body);
     font-size: 0.9rem;
-    color: var(--color-gray-600);
-    margin-top: 1.5rem;
+    color: var(--color-gray-400);
+    margin-top: 0.75rem;
   }
 
   .section-title {
@@ -267,5 +310,49 @@ const faqs = (await getCollection('faq'))
     font-weight: 600;
     color: var(--color-ink);
     margin: 0;
+  }
+
+  .join-heading {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    color: var(--color-ink);
+    margin-bottom: 0.75rem;
+  }
+
+  .join-sub {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: var(--color-gray-600);
+    line-height: 1.65;
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+  }
+
+  .glofox-wrap iframe {
+    display: block;
+    width: 100%;
+    height: 1200px;
+    border-radius: 6px;
+    border: 1px solid var(--color-gray-200);
+  }
+
+  @media (max-width: 768px) {
+    .glofox-wrap iframe { height: 900px; }
+  }
+
+  .glofox-credit {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--color-gray-400);
+    text-align: right;
+    margin-top: 0.5rem;
+  }
+
+  .glofox-credit a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .glofox-credit a:hover {
+    color: var(--color-gray-600);
   }
 </style>

@@ -1,16 +1,16 @@
 {
   "order": 1,
-  "name": "Individual",
-  "price": 25,
+  "name": "Month to Month",
+  "price": 50,
   "period": "month",
-  "tagline": "Full access for one. Cancel whenever you want.",
+  "tagline": "Maximum flexibility. No long-term commitment.",
   "features": [
     "Unlimited 24/7 key card access",
+    "$25 access/key fee — first month only",
+    "Renew month to month",
     "Full cardio and weight floor",
-    "Cables, machines, functional area",
     "Free orientation session",
-    "No contract — month-to-month",
-    "No sign-up fee"
+    "Payment method required on file"
   ],
   "cta": "Start Your Membership",
   "featured": false

@@ -1,16 +1,16 @@
 {
   "order": 3,
-  "name": "Family",
-  "price": 55,
+  "name": "6-Month",
+  "price": 32,
   "period": "month",
-  "tagline": "Up to four people. As low as $13.75 each.",
+  "tagline": "A half-year commitment at a great rate.",
   "features": [
-    "Up to 4 members on one plan",
-    "Four key cards included",
-    "Add extra members for $10/ea",
-    "As low as $13.75 per person",
-    "No contract — month-to-month",
-    "No sign-up fee"
+    "6-month commitment",
+    "$20 joining fee",
+    "Continues month-to-month after term",
+    "Full cardio and weight floor",
+    "Free orientation session",
+    "Payment method required on file"
   ],
   "cta": "Start Your Membership",
   "featured": false

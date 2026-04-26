@@ -1,16 +1,16 @@
 {
   "order": 2,
-  "name": "Couple",
-  "price": 40,
+  "name": "12-Month",
+  "price": 30,
   "period": "month",
-  "tagline": "Two memberships. Less than two singles.",
+  "tagline": "Best monthly rate. Biggest long-term savings.",
   "features": [
-    "Everything in Individual, times two",
-    "Two key cards included",
-    "Save $10/mo vs. two Individual plans",
-    "Shared account management",
-    "No contract — month-to-month",
-    "No sign-up fee"
+    "12-month commitment",
+    "$10 joining fee",
+    "Continues month-to-month after term",
+    "Full cardio and weight floor",
+    "Free orientation session",
+    "Payment method required on file"
   ],
   "cta": "Start Your Membership",
   "featured": true
