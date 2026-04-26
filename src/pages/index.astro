@@ -5,9 +5,10 @@ import MembershipCard from '../components/MembershipCard.astro';
 import MapEmbed from '../components/MapEmbed.astro';
 import BusinessHours from '../components/BusinessHours.astro';
 import { getCollection } from 'astro:content';
+import { PHONE_DISPLAY, PHONE_TEL, PHONE_E164, ADDRESS_STREET, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_ZIP, MAPS_DIRECTIONS_URL, SITE_URL, GEO_LAT, GEO_LNG } from '../consts';
 import heroImg from '../assets/images/hero/tifton-001.jpg';
 import awardImg from '../assets/images/tifton-016.jpg';
-import jordanImg from '../assets/images/staff/jordan-roman.webp';
+import jordanImg from '../assets/images/staff/jordan-roman.png';
 import gymFreeWeightsImg from '../assets/images/gym/free-weights.jpg';
 import gymCardioImg from '../assets/images/gym/cardio-row.jpg';
 import gymFunctionalImg from '../assets/images/gym/functional-tf-method.jpg';
@@ -21,25 +22,25 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ExerciseGym",
   "name": "Tifton Fitness",
-  "url": "https://tiftonfitness.com",
-  "telephone": "+12293406228",
+  "url": SITE_URL,
+  "telephone": PHONE_E164,
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "130 Hunt Rd B7",
-    "addressLocality": "Tifton",
-    "addressRegion": "GA",
-    "postalCode": "31793",
-    "addressCountry": "US"
+    "streetAddress": ADDRESS_STREET,
+    "addressLocality": ADDRESS_CITY,
+    "addressRegion": ADDRESS_STATE,
+    "postalCode": ADDRESS_ZIP,
+    "addressCountry": "US",
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 31.4620,
-    "longitude": -83.5230
+    "latitude": GEO_LAT,
+    "longitude": GEO_LNG,
   },
   "openingHours": "Mo-Su 00:00-23:59",
   "priceRange": "$25–$55/month",
   "description": "24/7 gym in Tifton, GA. Membership plans starting at $30/mo. Full equipment access, key card entry.",
-  "award": ["Tifton Gazette Best Fitness Center 2026"]
+  "award": ["Tifton Gazette Best Fitness Center 2026"],
 };
 ---
 
@@ -65,17 +66,84 @@ const jsonLd = {
     </div>
 
     <div class="hero-content container">
-      <p class="hero-eyebrow">Tifton, GA &mdash; Open 24/7</p>
-      <h1 class="hero-headline">
-        Your gym.<br />No closing time.
-      </h1>
-      <p class="hero-sub">
-        24/7 key card access, full equipment.
-        Membership plans starting at $30/mo.
-      </p>
-      <div class="hero-ctas">
-        <a href="/contact" class="btn-primary">Schedule a Free Tour</a>
-        <a href="/membership" class="btn-outline-white">See Pricing</a>
+      <div class="hero-text">
+        <p class="hero-eyebrow">Tifton, GA &mdash; Open 24/7</p>
+        <h1 class="hero-headline">
+          Your gym.<br />No closing time.
+        </h1>
+        <p class="hero-sub">
+          24/7 key card access, full equipment.
+          Membership plans starting at $30/mo.
+        </p>
+        <a href="/membership" class="hero-pricing-link">See Pricing &rarr;</a>
+      </div>
+
+      <div class="hero-form-wrap">
+        <div class="tour-card">
+          <h2 class="tour-card-title">Book Your Free Tour</h2>
+          <p class="tour-card-sub">Come see the equipment for yourself &mdash; it&rsquo;s free.</p>
+          <form
+            method="POST"
+            action="https://formspree.io/f/xvzdykdz"
+            class="tour-form"
+          >
+            <input type="hidden" name="_subject" value="Free Tour Request – Tifton Fitness" />
+            <input type="hidden" name="_next" value="/thanks" />
+            <input type="hidden" name="type" value="tour" />
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+
+            <div class="tour-field">
+              <label for="tour-name" class="tour-label">Name <span class="tour-req">*</span></label>
+              <input
+                type="text"
+                id="tour-name"
+                name="name"
+                required
+                autocomplete="name"
+                class="tour-input"
+                placeholder="First and last name"
+              />
+            </div>
+
+            <div class="tour-field">
+              <label for="tour-phone" class="tour-label">Phone <span class="tour-req">*</span></label>
+              <input
+                type="tel"
+                id="tour-phone"
+                name="phone"
+                required
+                autocomplete="tel"
+                class="tour-input"
+                placeholder="(229) 000-0000"
+              />
+            </div>
+
+            <div class="tour-field">
+              <label for="tour-email" class="tour-label">Email</label>
+              <input
+                type="email"
+                id="tour-email"
+                name="email"
+                autocomplete="email"
+                class="tour-input"
+                placeholder="you@example.com"
+              />
+            </div>
+
+            <div class="tour-field">
+              <label for="tour-time" class="tour-label">Best time to visit</label>
+              <select id="tour-time" name="best_time" class="tour-input tour-select">
+                <option value="">Anytime works</option>
+                <option value="morning">Morning (6am&ndash;12pm)</option>
+                <option value="afternoon">Afternoon (12pm&ndash;5pm)</option>
+                <option value="evening">Evening (5pm&ndash;10pm)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-primary tour-submit">Book My Free Tour &rarr;</button>
+            <p class="tour-privacy">We never share your information.</p>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -100,7 +168,7 @@ const jsonLd = {
         </div>
         <div class="award-divider"></div>
         <div class="award-item">
-          <span class="award-title">(229) 340-6228</span>
+          <span class="award-title">{PHONE_DISPLAY}</span>
           <span class="award-source">Call or walk in anytime</span>
         </div>
       </div>
@@ -226,16 +294,16 @@ const jsonLd = {
           <BusinessHours variant="large" />
           <div class="location-detail">
             <p class="location-address">
-              130 Hunt Rd B7<br />
-              Tifton, GA 31793
+              {ADDRESS_STREET}<br />
+              {ADDRESS_CITY}, {ADDRESS_STATE} {ADDRESS_ZIP}
             </p>
             <p class="location-note">Off Hunt Rd, near Hobby Lobby</p>
             <div class="location-actions">
-              <a href="tel:+12293406228" class="btn-primary">
-                Call (229) 340-6228
+              <a href={PHONE_TEL} class="btn-primary">
+                Call {PHONE_DISPLAY}
               </a>
               <a
-                href="https://www.google.com/maps/dir/?api=1&destination=130+Hunt+Rd+B7,+Tifton,+GA+31793"
+                href={MAPS_DIRECTIONS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="btn-outline"
@@ -351,9 +419,9 @@ const jsonLd = {
       </p>
       <div class="final-cta-actions">
         <a href="/contact" class="btn-primary">Schedule a Free Tour</a>
-        <a href="tel:+12293406228" class="btn-outline-white">Call (229) 340-6228</a>
+        <a href={PHONE_TEL} class="btn-outline-white">Call {PHONE_DISPLAY}</a>
       </div>
-      <p class="final-cta-address">130 Hunt Rd B7 &bull; Tifton, GA 31793</p>
+      <p class="final-cta-address">{ADDRESS_STREET} &bull; {ADDRESS_CITY}, {ADDRESS_STATE} {ADDRESS_ZIP}</p>
     </div>
   </section>
 
@@ -364,31 +432,46 @@ const jsonLd = {
   .hero-section {
     position: relative;
     overflow: hidden;
+    min-height: 680px;
   }
 
   .hero-image-wrap {
-    position: relative;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
   }
 
   .hero-img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
     display: block;
+    aspect-ratio: auto !important; /* override inline 21/9 from ImagePlaceholder */
   }
 
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background-color: rgba(10, 10, 10, 0.52);
+    background-color: rgba(10, 10, 10, 0.58);
   }
 
   .hero-content {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-block: 4rem;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding-block: 5rem;
+  }
+
+  @media (max-width: 1023px) {
+    .hero-section { min-height: unset; }
+    .hero-content {
+      grid-template-columns: 1fr;
+      padding-block: 3.5rem;
+      gap: 2rem;
+    }
   }
 
   .hero-eyebrow {
@@ -403,28 +486,123 @@ const jsonLd = {
 
   .hero-headline {
     font-family: var(--font-display);
-    font-size: clamp(2.75rem, 7vw, 5.5rem);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 800;
     color: var(--color-paper);
     letter-spacing: -0.03em;
     line-height: 1.08;
     margin: 0 0 1.25rem;
-    max-width: 700px;
   }
 
   .hero-sub {
     font-family: var(--font-body);
-    font-size: clamp(1rem, 2vw, 1.1875rem);
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
     color: rgba(250, 250, 247, 0.85);
     line-height: 1.55;
-    margin: 0 0 2rem;
-    max-width: 480px;
+    margin: 0 0 1.5rem;
   }
 
-  .hero-ctas {
+  .hero-pricing-link {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: rgba(250, 250, 247, 0.8);
+    text-decoration: none;
+  }
+
+  .hero-pricing-link:hover {
+    color: var(--color-paper);
+    text-decoration: underline;
+  }
+
+  /* Tour booking card */
+  .tour-card {
+    background: var(--color-paper);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .tour-card-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 0 0 0.25rem;
+  }
+
+  .tour-card-sub {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-gray-600);
+    margin: 0 0 1.25rem;
+    line-height: 1.4;
+  }
+
+  .tour-form {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .tour-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .tour-label {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-gray-700);
+  }
+
+  .tour-req {
+    color: var(--color-accent);
+  }
+
+  .tour-input {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-ink);
+    background: white;
+    border: 1.5px solid var(--color-gray-300);
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.875rem;
+    width: 100%;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    box-sizing: border-box;
+  }
+
+  .tour-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(31, 95, 63, 0.15);
+  }
+
+  .tour-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23606060' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  .tour-submit {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin-top: 0.25rem;
+  }
+
+  .tour-privacy {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--color-gray-500);
+    text-align: center;
+    margin: 0;
   }
 
   /* Awards bar */
