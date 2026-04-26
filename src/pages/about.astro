@@ -3,17 +3,42 @@ import Layout from '../layouts/Layout.astro';
 import StaffCard from '../components/StaffCard.astro';
 import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import { getCollection } from 'astro:content';
-import jordanImg from '../assets/images/staff/jordan-roman.webp';
+import jordanImg from '../assets/images/staff/jordan-roman.png';
 import awardGymImg from '../assets/images/tifton-016.jpg';
 import awardTrainerImg from '../assets/images/tifton-015.jpg';
+import { PHONE_DISPLAY, PHONE_TEL, PHONE_E164, ADDRESS_STREET, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_ZIP, SITE_URL } from '../consts';
 
 const staff = await getCollection('staff');
 const jordan = staff.find((s) => s.id === 'jordan-roman');
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Tifton Fitness",
+  "url": SITE_URL,
+  "telephone": PHONE_E164,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": ADDRESS_STREET,
+    "addressLocality": ADDRESS_CITY,
+    "addressRegion": ADDRESS_STATE,
+    "postalCode": ADDRESS_ZIP,
+    "addressCountry": "US",
+  },
+  "award": ["Tifton Gazette Best Fitness Center 2026"],
+  "employee": {
+    "@type": "Person",
+    "name": "Jordan Roman",
+    "jobTitle": "Personal Trainer",
+    "award": "Tifton Gazette Best Personal Trainer 2026",
+  },
+};
 ---
 
 <Layout
   title="About — Tifton Fitness"
   description="Meet the team behind Tifton Fitness. Jordan Roman, Best Personal Trainer 2026 per Tifton Gazette. 24/7 gym in Tifton, GA."
+  jsonLd={jsonLd}
 >
 
   <!-- ─── PAGE HEADER ───────────────────────────────────── -->
@@ -113,7 +138,7 @@ const jordan = staff.find((s) => s.id === 'jordan-roman');
       </p>
       <div class="cta-actions">
         <a href="/contact" class="btn-outline-white">Schedule a Free Tour</a>
-        <a href="tel:+12293406228" class="btn-outline-white">Call (229) 340-6228</a>
+        <a href={PHONE_TEL} class="btn-outline-white">Call {PHONE_DISPLAY}</a>
       </div>
     </div>
   </section>

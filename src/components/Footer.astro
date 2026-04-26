@@ -1,4 +1,6 @@
 ---
+import { PHONE_DISPLAY, PHONE_TEL, ADDRESS_STREET, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_ZIP } from '../consts';
+
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/membership', label: 'Membership' },
@@ -17,10 +19,10 @@ const navLinks = [
       <div>
         <p class="font-display font-bold text-xl text-paper mb-3">Tifton Fitness</p>
         <address class="not-italic font-body text-sm text-gray-400 leading-relaxed">
-          130 Hunt Rd B7<br />
-          Tifton, GA 31793<br /><br />
-          <a href="tel:+12293406228" class="text-paper hover:text-accent-light no-underline transition-colors">
-            (229) 340-6228
+          {ADDRESS_STREET}<br />
+          {ADDRESS_CITY}, {ADDRESS_STATE} {ADDRESS_ZIP}<br /><br />
+          <a href={PHONE_TEL} class="text-paper hover:text-accent-light no-underline transition-colors">
+            {PHONE_DISPLAY}
           </a>
         </address>
         <p class="font-body text-sm text-gray-400 mt-3">Open 24/7 — 365 days a year</p>

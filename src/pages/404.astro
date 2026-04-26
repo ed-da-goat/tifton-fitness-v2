@@ -4,35 +4,35 @@ import { PHONE_DISPLAY, PHONE_TEL } from '../consts';
 ---
 
 <Layout
-  title="Message Received — Tifton Fitness"
-  description="Thanks for reaching out to Tifton Fitness. We'll be in touch soon."
+  title="Page Not Found — Tifton Fitness"
+  description="The page you're looking for doesn't exist. Find our membership plans, gym info, and contact details at Tifton Fitness."
 >
 
-  <section class="thanks-section">
+  <section class="not-found-section">
     <div class="container-prose text-center">
-      <p class="thanks-eyebrow">Got it</p>
-      <h1 class="thanks-title">We'll be in touch.</h1>
-      <p class="thanks-sub">
-        Your message was sent. We typically respond within a few hours during business hours.
-        If you need to reach us sooner, give us a call.
+      <p class="eyebrow">404</p>
+      <h1 class="title">Page not found.</h1>
+      <p class="sub">
+        That page doesn't exist. Try one of the links below, or give us a call.
       </p>
       <a href={PHONE_TEL} class="phone-link">{PHONE_DISPLAY}</a>
-      <div class="thanks-actions">
+      <nav class="actions" aria-label="Return navigation">
         <a href="/" class="btn-primary">Back to Home</a>
-        <a href="/membership" class="btn-outline">View Membership Plans</a>
-      </div>
+        <a href="/membership" class="btn-outline">Membership Plans</a>
+        <a href="/contact" class="btn-outline">Contact Us</a>
+      </nav>
     </div>
   </section>
 
 </Layout>
 
 <style>
-  .thanks-section {
+  .not-found-section {
     padding-block: clamp(5rem, 12vw, 9rem);
     background-color: var(--color-paper);
   }
 
-  .thanks-eyebrow {
+  .eyebrow {
     font-family: var(--font-body);
     font-size: 0.8125rem;
     font-weight: 700;
@@ -42,13 +42,13 @@ import { PHONE_DISPLAY, PHONE_TEL } from '../consts';
     margin: 0 0 1rem;
   }
 
-  .thanks-title {
+  .title {
     font-size: clamp(2.5rem, 6vw, 4rem);
     color: var(--color-ink);
     margin-bottom: 1.25rem;
   }
 
-  .thanks-sub {
+  .sub {
     font-family: var(--font-body);
     font-size: 1.0625rem;
     color: var(--color-gray-600);
@@ -66,7 +66,7 @@ import { PHONE_DISPLAY, PHONE_TEL } from '../consts';
     margin-bottom: 2.5rem;
   }
 
-  .thanks-actions {
+  .actions {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;

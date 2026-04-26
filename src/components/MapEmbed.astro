@@ -1,4 +1,6 @@
 ---
+import { ADDRESS_FULL, MAPS_EMBED_URL } from '../consts';
+
 interface Props {
   class?: string;
 }
@@ -7,8 +9,8 @@ const { class: className = '' } = Astro.props;
 
 <div class={`map-wrap ${className}`}>
   <iframe
-    title="Tifton Fitness location — 130 Hunt Rd B7, Tifton, GA 31793"
-    src="https://maps.google.com/maps?q=130+Hunt+Rd+B7%2C+Tifton%2C+GA+31793&z=16&output=embed"
+    title={`Tifton Fitness location — ${ADDRESS_FULL}`}
+    src={MAPS_EMBED_URL}
     width="100%"
     height="100%"
     style="border: 0;"

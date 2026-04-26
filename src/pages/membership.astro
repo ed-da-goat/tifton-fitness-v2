@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import MembershipCard from '../components/MembershipCard.astro';
 import { getCollection } from 'astro:content';
+import { PHONE_DISPLAY, PHONE_TEL, PHONE_E164, ADDRESS_STREET, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_ZIP, SITE_URL, GLOFOX_BRANCH_ID } from '../consts';
 
 const memberships = (await getCollection('membership')).sort(
   (a, b) => a.data.order - b.data.order
@@ -10,11 +11,31 @@ const memberships = (await getCollection('membership')).sort(
 const faqs = (await getCollection('faq'))
   .filter((f) => f.data.category === 'Membership & Billing')
   .sort((a, b) => a.data.order - b.data.order);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  "name": "Tifton Fitness",
+  "url": SITE_URL,
+  "telephone": PHONE_E164,
+  "priceRange": "$30–$50/month",
+  "description": "Gym memberships in Tifton, GA. Month-to-month or contract plans. 24/7 key card access.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": ADDRESS_STREET,
+    "addressLocality": ADDRESS_CITY,
+    "addressRegion": ADDRESS_STATE,
+    "postalCode": ADDRESS_ZIP,
+    "addressCountry": "US",
+  },
+  "openingHours": "Mo-Su 00:00-23:59",
+};
 ---
 
 <Layout
   title="Memberships — Tifton Fitness"
   description="Gym memberships in Tifton, GA. Month-to-month $50/mo or contract plans starting at $30/mo. 24/7 access, no hidden fees."
+  jsonLd={jsonLd}
 >
 
   <!-- ─── PAGE HEADER ───────────────────────────────────── -->
@@ -118,7 +139,7 @@ const faqs = (await getCollection('faq'))
 
       <div class="faq-cta">
         <p class="faq-cta-text">Still have a question?</p>
-        <a href="tel:+12293406228" class="btn-primary">Call (229) 340-6228</a>
+        <a href={PHONE_TEL} class="btn-primary">Call {PHONE_DISPLAY}</a>
         <a href="/contact" class="btn-outline">Send a Message</a>
       </div>
     </div>
@@ -134,7 +155,7 @@ const faqs = (await getCollection('faq'))
       </p>
       <div class="glofox-wrap">
         <iframe
-          src="https://app.glofox.com/portal/#/branch/69321543c5a54a285f0fff2c/memberships"
+          src={`https://app.glofox.com/portal/#/branch/${GLOFOX_BRANCH_ID}/memberships`}
           frameborder="0"
           width="100%"
           height="1200"

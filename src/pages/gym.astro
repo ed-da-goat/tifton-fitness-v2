@@ -4,6 +4,7 @@ import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import MapEmbed from '../components/MapEmbed.astro';
 import BusinessHours from '../components/BusinessHours.astro';
 import { getCollection } from 'astro:content';
+import { PHONE_DISPLAY, PHONE_TEL, ADDRESS_STREET, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_ZIP } from '../consts';
 import galleryMainImg from '../assets/images/gym/machines-floor.jpg';
 import galleryWeightsImg from '../assets/images/gym/free-weights.jpg';
 import galleryCardioImg from '../assets/images/gym/cardio-row.jpg';
@@ -199,8 +200,8 @@ const equipmentZones = [
         <div class="hours-panel">
           <BusinessHours variant="large" />
           <div class="hours-address">
-            <p>130 Hunt Rd B7<br />Tifton, GA 31793</p>
-            <a href="tel:+12293406228" class="btn-primary mt-3">Call (229) 340-6228</a>
+            <p>{ADDRESS_STREET}<br />{ADDRESS_CITY}, {ADDRESS_STATE} {ADDRESS_ZIP}</p>
+            <a href={PHONE_TEL} class="btn-primary mt-3">Call {PHONE_DISPLAY}</a>
           </div>
         </div>
       </div>

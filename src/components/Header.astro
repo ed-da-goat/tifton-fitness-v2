@@ -1,4 +1,6 @@
 ---
+import { PHONE_DISPLAY, PHONE_TEL } from '../consts';
+
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/membership', label: 'Membership' },
@@ -37,15 +39,16 @@ const currentPath = Astro.url.pathname;
 
       <!-- Phone CTA (desktop) -->
       <a
-        href="tel:+12293406228"
+        href={PHONE_TEL}
         class="hidden md:inline-flex items-center gap-2 btn-primary text-sm px-4 py-2"
+        style="color: var(--color-paper);"
       >
-        (229) 340-6228
+        {PHONE_DISPLAY}
       </a>
 
       <!-- Mobile: phone + hamburger -->
       <div class="flex md:hidden items-center gap-3">
-        <a href="tel:+12293406228" class="font-body font-semibold text-sm text-accent no-underline">
+        <a href={PHONE_TEL} class="font-body font-semibold text-sm text-accent no-underline">
           Call
         </a>
         <!-- CSS-only mobile menu toggle -->
@@ -78,8 +81,8 @@ const currentPath = Astro.url.pathname;
           {label}
         </a>
       ))}
-      <a href="tel:+12293406228" class="btn-primary mt-3 text-center">
-        Call (229) 340-6228
+      <a href={PHONE_TEL} class="btn-primary mt-3 text-center">
+        Call {PHONE_DISPLAY}
       </a>
     </div>
   </nav>

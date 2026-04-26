@@ -2,11 +2,39 @@
 import Layout from '../layouts/Layout.astro';
 import MapEmbed from '../components/MapEmbed.astro';
 import BusinessHours from '../components/BusinessHours.astro';
+import {
+  PHONE_DISPLAY, PHONE_TEL, PHONE_E164,
+  ADDRESS_STREET, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_ZIP,
+  MAPS_DIRECTIONS_URL, SITE_URL, GEO_LAT, GEO_LNG,
+} from '../consts';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Tifton Fitness",
+  "url": SITE_URL,
+  "telephone": PHONE_E164,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": ADDRESS_STREET,
+    "addressLocality": ADDRESS_CITY,
+    "addressRegion": ADDRESS_STATE,
+    "postalCode": ADDRESS_ZIP,
+    "addressCountry": "US",
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": GEO_LAT,
+    "longitude": GEO_LNG,
+  },
+  "openingHours": "Mo-Su 00:00-23:59",
+};
 ---
 
 <Layout
   title="Contact — Tifton Fitness"
-  description="Get in touch with Tifton Fitness. Call (229) 340-6228 or visit us at 130 Hunt Rd B7, Tifton, GA. Open 24/7."
+  description={`Get in touch with Tifton Fitness. Call ${PHONE_DISPLAY} or visit us at ${ADDRESS_STREET}, ${ADDRESS_CITY}, ${ADDRESS_STATE}. Open 24/7.`}
+  jsonLd={jsonLd}
 >
 
   <!-- ─── PAGE HEADER ───────────────────────────────────── -->
@@ -31,19 +59,19 @@ import BusinessHours from '../components/BusinessHours.astro';
 
           <div class="detail-block">
             <p class="detail-label">Phone</p>
-            <a href="tel:+12293406228" class="detail-value detail-link">
-              (229) 340-6228
+            <a href={PHONE_TEL} class="detail-value detail-link">
+              {PHONE_DISPLAY}
             </a>
           </div>
 
           <div class="detail-block">
             <p class="detail-label">Address</p>
             <address class="detail-value not-italic">
-              130 Hunt Rd B7<br />
-              Tifton, GA 31793
+              {ADDRESS_STREET}<br />
+              {ADDRESS_CITY}, {ADDRESS_STATE} {ADDRESS_ZIP}
             </address>
             <a
-              href="https://www.google.com/maps/dir/?api=1&destination=130+Hunt+Rd+B7,+Tifton,+GA+31793"
+              href={MAPS_DIRECTIONS_URL}
               target="_blank"
               rel="noopener noreferrer"
               class="detail-sub-link"
