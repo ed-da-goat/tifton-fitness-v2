@@ -2,21 +2,21 @@
 
 @theme {
   /* ─── Color palette ─────────────────────────────── */
-  --color-accent:       #1F5F3F;
-  --color-accent-light: #2D7A55;
-  --color-accent-dark:  #163F2A;
-  --color-accent-muted: #EBF5EF;
+  --color-accent:       #7ED321;
+  --color-accent-light: #8FE330;
+  --color-accent-dark:  #6BBF1A;
+  --color-accent-muted: #EAF7D4;
 
-  --color-ink:          #0A0A0A;
-  --color-paper:        #FAFAF7;
+  --color-ink:          #1F5964;
+  --color-paper:        #B8CFD3;
 
-  --color-gray-50:      #F5F5F0;
-  --color-gray-100:     #EBEBEB;
-  --color-gray-200:     #D8D8D0;
-  --color-gray-400:     #9A9A90;
-  --color-gray-600:     #606058;
-  --color-gray-800:     #2A2A25;
-  --color-gray-900:     #1A1A16;
+  --color-gray-50:      #E8F2F4;
+  --color-gray-100:     #D4E7EA;
+  --color-gray-200:     #B8CFD3;
+  --color-gray-400:     #8FA7AC;
+  --color-gray-600:     #5A7A80;
+  --color-gray-800:     #2D5A64;
+  --color-gray-900:     #1A4550;
 
   /* ─── Typography ────────────────────────────────── */
   --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
@@ -144,14 +144,14 @@ a {
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  color: var(--color-paper);
+  color: #FFFFFF;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.9375rem;
   letter-spacing: 0.01em;
   padding: 0.875rem 1.75rem;
   border-radius: 4px;
-  border: 2px solid var(--color-paper);
+  border: 2px solid #FFFFFF;
   text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
