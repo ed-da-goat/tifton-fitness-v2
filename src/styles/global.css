@@ -94,7 +94,7 @@ a {
   align-items: center;
   justify-content: center;
   background-color: var(--color-accent);
-  color: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.9375rem;
