@@ -57,7 +57,7 @@ const isDev = import.meta.env.DEV;
 
 <style>
   .image-placeholder {
-    background-color: #B8CFD3;
+    background-color: var(--color-paper);
     position: relative;
     width: 100%;
     display: flex;
@@ -74,8 +74,8 @@ const isDev = import.meta.env.DEV;
 
   .placeholder-tag {
     display: inline-block;
-    background-color: #7ED321;
-    color: #1F5964;
+    background-color: var(--color-accent);
+    color: var(--color-ink);
     font-family: "Inter Tight Variable", system-ui, sans-serif;
     font-size: 0.6875rem;
     font-weight: 700;
@@ -89,7 +89,7 @@ const isDev = import.meta.env.DEV;
   .placeholder-label p {
     font-family: "Inter Tight Variable", system-ui, sans-serif;
     font-size: 0.8125rem;
-    color: #5A7A80;
+    color: var(--color-gray-600);
     line-height: 1.5;
     margin: 0;
   }
